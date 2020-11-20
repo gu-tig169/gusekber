@@ -23,11 +23,12 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-
+  
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.0
+  provider: ^4.3.2+2
 
 dev_dependencies:
   flutter_launcher_icons: "^0.7.3"
@@ -51,8 +52,8 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-assets:
-  - assets/add.png
+  assets:
+    - assets/add.png
   
 
   # An image asset can refer to one or more resolution-specific "variants", see
@@ -66,16 +67,17 @@ assets:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-fonts:
- - family: Amatic SC
-   fonts:
-        - asset: fonts/icons/AmaticSC-Bold.ttf
+  fonts:
+    - family: AmaticSC
+      fonts:
+        - asset: ./fonts/AmaticSC-Bold.ttf
         - weight: 700
-fonts:        
- - family: IndieFlower
-   fonts:
-        - asset: fonts/icons/IndiFLower-Regular.ttf
+        
+    - family: IndieFlower
+      fonts:
+        - asset: ./fonts/IndieFlower-Regular.ttf
         - weight: 400
+
         
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages

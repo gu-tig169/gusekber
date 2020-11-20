@@ -1,7 +1,15 @@
 import 'package:flutter/material.dart';
-import 'homepage.dart';
+import 'package:provider/provider.dart';
+import 'taskmodel.dart';
+import './homepage.dart';
 
-void main() => runApp(ToDoApp());
+void main() {
+  var state = MyState();
+
+  runApp(
+    ChangeNotifierProvider(create: (context) => state, child: ToDoApp()),
+  );
+}
 
 final barColor = const Color(0xFF99AAAB);
 final bgColor = const Color(0xFFEAF0F1);
@@ -13,7 +21,7 @@ class ToDoApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'TO DO LIST',
-      home: HomePage(),
+      home: HomePageView(),
     );
   }
 }
