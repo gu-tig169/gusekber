@@ -26,23 +26,32 @@ class ToDoList extends StatelessWidget {
             activeColor: barColor,
             focusColor: barColor,
             value: todo.done,
-            onChanged: (bool newValue) {
+            onChanged: (bool newValue) async {
               var state = Provider.of<MyState>(context, listen: false);
               state.checkTodo(todo, newValue);
             }),
         title: Text(
-          todo.input,
-          style: TextStyle(
-            fontFamily: 'IndieFlower',
-            fontWeight: FontWeight.w400,
-            fontSize: 25,
-            color: textColor,
-          ),
+          todo.input != null ? todo.input : '',
+          //todo.input,
+          style: todo.done
+              ? TextStyle(
+                  decoration: TextDecoration.lineThrough,
+                  fontFamily: 'IndieFlower',
+                  fontWeight: FontWeight.w400,
+                  fontSize: 25,
+                  color: textColor)
+              : TextStyle(
+                  decoration: TextDecoration.none,
+                  fontFamily: 'IndieFlower',
+                  fontWeight: FontWeight.w400,
+                  fontSize: 25,
+                  color: textColor,
+                ),
         ),
         trailing: IconButton(
           icon: Icon(Icons.delete),
           color: textColor,
-          onPressed: () {
+          onPressed: () async {
             var state = Provider.of<MyState>(context, listen: false);
             state.removeTodo(todo);
           },
