@@ -3,7 +3,6 @@ import 'package:provider/provider.dart';
 import 'package:todolist/main.dart';
 
 import 'newtaskview.dart';
-import 'constants.dart';
 import 'taskmodel.dart';
 import 'todolist.dart';
 
@@ -22,34 +21,36 @@ class _HomePageViewState extends State<HomePageView> {
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(250),
         child: AppBar(
-            backgroundColor: barColor,
-            elevation: 20,
-            centerTitle: true,
-            flexibleSpace: FlexibleSpaceBar(
-              title: Text(
-                'TO-DO LIST',
-                style: TextStyle(
-                  fontSize: 50.0,
-                  fontFamily: 'AmaticSC',
-                  fontWeight: FontWeight.bold,
-                ),
+          backgroundColor: barColor,
+          elevation: 20,
+          centerTitle: true,
+          flexibleSpace: FlexibleSpaceBar(
+            title: Text(
+              'TO-DO LIST',
+              style: TextStyle(
+                fontSize: 50.0,
+                fontFamily: 'AmaticSC',
+                fontWeight: FontWeight.bold,
               ),
             ),
-            actions: [
-              PopupMenuButton(
-                  onSelected: choiceAction,
-                  itemBuilder: (BuildContext context) {
-                    return Constants.choices.map((String choice) {
-                      return PopupMenuItem<String>(
-                        value: choice,
-                        child: Text(choice),
-                      );
-                    }).toList();
-                  })
-            ]),
+          ),
+          actions: [
+            PopupMenuButton(
+                onSelected: (value) async {
+                  Provider.of<MyState>(context, listen: false)
+                      .setFilterTodo(value);
+                },
+                itemBuilder: (context) => [
+                      PopupMenuItem(child: Text('All'), value: 'All'),
+                      PopupMenuItem(child: Text('Done'), value: 'Done'),
+                      PopupMenuItem(child: Text('Undone'), value: 'Undone'),
+                    ]),
+          ],
+        ),
       ),
       body: Consumer<MyState>(
-        builder: (context, state, child) => ToDoList(state.list),
+        builder: (context, state, child) =>
+            ToDoList(filterList(state.list, state.filterTodo)),
       ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
@@ -58,21 +59,24 @@ class _HomePageViewState extends State<HomePageView> {
           var newTodo = await Navigator.push(
               context,
               MaterialPageRoute(
-                  builder: (context) => NewTaskView(Todos(input: ''))));
+                  builder: (context) => NewTaskView(Todos(
+                        input: '',
+                      ))));
           //Lägger till Todo i listan av Todos.
-          Provider.of<MyState>(context, listen: false).addTodo(newTodo);
+          if (newTodo != null) {
+            Provider.of<MyState>(context, listen: false).addTodo(newTodo);
+          }
         },
       ),
     );
   }
 }
 
-void choiceAction(String choice) {
-  if (choice == Constants.All) {
-    print('All');
-  } else if (choice == Constants.Done) {
-    print('Done');
-  } else if (choice == Constants.Undone) {
-    print('Undone');
+List<Todos> filterList(list, filterTodo) {
+  if (filterTodo == 'Done') {
+    return list.where((item) => item.done == true).toList();
+  } else if (filterTodo == 'Undone') {
+    return list.where((item) => item.done == false).toList();
   }
+  return list;
 }

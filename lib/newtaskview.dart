@@ -40,14 +40,12 @@ class NewTaskViewState extends State<NewTaskView> {
           elevation: 20,
           centerTitle: true,
           flexibleSpace: FlexibleSpaceBar(
-            title: Text(
-              'ADD TASK',
-              style: TextStyle(
-                fontSize: 50.0,
-                fontWeight: FontWeight.bold,
-                fontFamily: 'AmaticSC',
-              ),
-            ),
+            title: Text('ADD TASK',
+                style: TextStyle(
+                  fontSize: 50.0,
+                  fontWeight: FontWeight.bold,
+                  fontFamily: 'AmaticSC',
+                )),
           ),
         ),
       ),
@@ -88,7 +86,11 @@ class NewTaskViewState extends State<NewTaskView> {
         textColor: Colors.white,
         label: Text('ADD'),
         onPressed: () {
-          Navigator.pop(context, Todos(input: input));
+          Navigator.pop(
+              context,
+              Todos(
+                input: input,
+              ));
         },
         icon: Icon(Icons.add),
         color: barColor,
