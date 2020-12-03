@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'taskmodel.dart';
+import './taskmodel.dart';
 import './homepage.dart';
 
 void main() {

@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:todolist/main.dart';
 
-import 'newtaskview.dart';
-import 'taskmodel.dart';
-import 'todolist.dart';
+import './newtaskview.dart';
+import './taskmodel.dart';
+import './todolist.dart';
 
 class HomePageView extends StatefulWidget {
   HomePageView({this.homePageView});
@@ -23,8 +23,8 @@ class _HomePageViewState extends State<HomePageView> {
         child: AppBar(
           backgroundColor: barColor,
           elevation: 20,
-          centerTitle: true,
           flexibleSpace: FlexibleSpaceBar(
+            centerTitle: true,
             title: Text(
               'TO-DO LIST',
               style: TextStyle(
@@ -41,9 +41,21 @@ class _HomePageViewState extends State<HomePageView> {
                       .setFilterTodo(value);
                 },
                 itemBuilder: (context) => [
-                      PopupMenuItem(child: Text('All'), value: 'All'),
-                      PopupMenuItem(child: Text('Done'), value: 'Done'),
-                      PopupMenuItem(child: Text('Undone'), value: 'Undone'),
+                      PopupMenuItem(
+                          child: Text('All',
+                              style: TextStyle(
+                                  fontSize: 25.0, fontFamily: 'AmaticSC')),
+                          value: 'All'),
+                      PopupMenuItem(
+                          child: Text('Done',
+                              style: TextStyle(
+                                  fontSize: 25.0, fontFamily: 'AmaticSC')),
+                          value: 'Done'),
+                      PopupMenuItem(
+                          child: Text('Undone',
+                              style: TextStyle(
+                                  fontSize: 25.0, fontFamily: 'AmaticSC')),
+                          value: 'Undone'),
                     ]),
           ],
         ),

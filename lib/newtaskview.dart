@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:todolist/main.dart';
+
 import './taskmodel.dart';
 
 class NewTaskView extends StatefulWidget {
@@ -38,8 +39,8 @@ class NewTaskViewState extends State<NewTaskView> {
         child: AppBar(
           backgroundColor: barColor,
           elevation: 20,
-          centerTitle: true,
           flexibleSpace: FlexibleSpaceBar(
+            centerTitle: true,
             title: Text('ADD TASK',
                 style: TextStyle(
                   fontSize: 50.0,
@@ -67,6 +68,7 @@ class NewTaskViewState extends State<NewTaskView> {
     return Container(
       margin: EdgeInsets.only(left: 16, right: 16),
       child: TextField(
+        style: TextStyle(fontSize: 20.0, fontFamily: 'IndieFlower'),
         controller: textEditingController,
         decoration: InputDecoration(
           hintText: 'Write your task here...',
@@ -84,7 +86,11 @@ class NewTaskViewState extends State<NewTaskView> {
       child: RaisedButton.icon(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
         textColor: Colors.white,
-        label: Text('ADD'),
+        label: Text('ADD',
+            style: TextStyle(
+                fontSize: 25.0,
+                fontWeight: FontWeight.bold,
+                fontFamily: 'AmaticSC')),
         onPressed: () {
           Navigator.pop(
               context,

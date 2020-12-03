@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'getapi.dart';
+import './getapi.dart';
 
 class Todos {
   String input;
@@ -53,11 +53,11 @@ class MyState extends ChangeNotifier {
 
   void checkTodo(Todos todo, bool done) async {
     todo.done = done;
-    await Api.refreshTodo(todo, todo.id);
+    await Api.checkTodo(todo, todo.id);
     await getList();
   }
 
-  void setFilterTodo(String filterToDo) async {
+  void setFilterTodo(String filterTodo) async {
     this._filterTodo = filterTodo;
     notifyListeners();
   }
